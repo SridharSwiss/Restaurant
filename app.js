@@ -60,11 +60,10 @@ const CATEGORIES = [
   { id: 'drinks', label: 'Drinks', emoji: '🥤' },
 ];
 
-const DELIVERY_FEE = 0; // Complimentary for WEF delegates
-const FREE_DELIVERY_THRESHOLD = 0; // Always free
-const MIN_ORDER = 250; // WEF minimum order
+const DELIVERY_FEE = 0;
+const FREE_DELIVERY_THRESHOLD = 0;
+const MIN_ORDER = 250;
 
-// Cart operations
 function getCart() {
   try { return JSON.parse(localStorage.getItem('elaichi_cart') || '[]'); } catch { return []; }
 }
@@ -95,7 +94,7 @@ function getCartTotal() {
     return sum + (item ? item.price * c.qty : 0);
   }, 0);
 }
-function getDeliveryFee() { return 0; } // Complimentary delivery
+function getDeliveryFee() { return 0; }
 
 function updateCartBadge() {
   const badges = document.querySelectorAll('.cart-badge');
@@ -118,15 +117,10 @@ function showToast(msg, type = 'success') {
 }
 function formatPrice(p) { return 'CHF ' + p.toFixed(2); }
 
-document.addEventListener('DOMContentLoaded', () => { updateCartBadge(); });
-
 function spiceLabel(level) {
   const labels = ['', 'Mild', 'Medium', 'Hot', 'Very Hot'];
   const icons = ['', '🌶️', '🌶️🌶️', '🌶️🌶️🌶️', '🌶️🌶️🌶️🌶️'];
   return level > 0 ? `<span class="spice-badge">${icons[level]} ${labels[level]}</span>` : '';
 }
 
-// Init on every page
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartBadge();
-});
+document.addEventListener('DOMContentLoaded', () => { updateCartBadge(); });
