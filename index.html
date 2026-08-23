@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ===== Hero ===== */
     .hero {
       background: linear-gradient(135deg, #1A1A1A 0%, #2D1A00 60%, #1A1A1A 100%);
       color: white;
@@ -103,8 +102,6 @@
     .hero-dish h4 { font-size: 0.95rem; color: white; margin-bottom: 4px; }
     .hero-dish p { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin: 0; }
     .hero-dish .price { color: var(--saffron); font-weight: 700; font-family: var(--font-mono); font-size: 0.9rem; }
-
-    /* ===== Features ===== */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -133,8 +130,6 @@
     }
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .feature-card p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.6; }
-
-    /* ===== Popular dishes ===== */
     .dishes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -176,8 +171,6 @@
       font-weight: 700;
       color: var(--saffron-dark);
     }
-
-    /* ===== Testimonials ===== */
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -208,8 +201,6 @@
     }
     .testimonial-author strong { display: block; font-size: 0.9rem; }
     .testimonial-author span { font-size: 0.8rem; color: var(--ink-soft); }
-
-    /* ===== CTA Banner ===== */
     .cta-banner {
       background: linear-gradient(135deg, var(--saffron-dark), var(--saffron));
       border-radius: var(--radius-lg);
@@ -221,8 +212,6 @@
     .cta-banner p { font-size: 1.05rem; margin-bottom: 32px; opacity: 0.9; }
     .cta-banner .btn { background: white; color: var(--saffron-dark); }
     .cta-banner .btn:hover { background: var(--cream); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-
-    /* ===== Mobile overrides ===== */
     .hide-xs { }
     @media (max-width: 640px) {
       .hide-xs { display: none; }
@@ -283,8 +272,6 @@
       <a href="cart.html" class="menu-cart-btn">🛒 View Cart</a>
     </div>
   </div>
-
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-text">
@@ -305,8 +292,6 @@
       <div class="hero-visual" id="heroVisual"></div>
     </div>
   </section>
-
-  <!-- Features -->
   <section class="section" style="background:var(--white);">
     <div class="container">
       <div class="section-header">
@@ -326,14 +311,12 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon">🌶️</div>
-          <h3>Bespoke & Customisable</h3>
+          <h3>Bespoke &amp; Customisable</h3>
           <p>Adjust spice levels, choose proteins or request allergen-free preparations. Every dish tailored to your exact preference.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Popular Dishes -->
   <section class="section">
     <div class="container">
       <div class="section-header">
@@ -346,8 +329,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Testimonials -->
   <section class="section" style="background:var(--white);">
     <div class="container">
       <div class="section-header">
@@ -382,8 +363,6 @@
       </div>
     </div>
   </section>
-
-  <!-- CTA -->
   <section class="section">
     <div class="container">
       <div class="cta-banner">
@@ -393,8 +372,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -430,7 +407,6 @@
       <p>© 2026 Elaichi Restaurant, Dielsdorf. All rights reserved. Made with 🌶️ and love.</p>
     </div>
   </footer>
-
   <script src="app.js"></script>
   <script>
     function toggleMenu() {
@@ -445,8 +421,6 @@
         document.body.style.overflow = '';
       }
     }
-
-    // Hero visual
     const heroItems = MENU_DATA.filter(i => i.popular).slice(0, 4);
     document.getElementById('heroVisual').innerHTML = heroItems.map((d, i) => `
       <div class="hero-dish" style="${i === 0 ? 'grid-column: 1 / -1;' : ''}" onclick="location.href='menu.html'">
@@ -456,8 +430,6 @@
         <div class="price">${formatPrice(d.price)}</div>
       </div>
     `).join('');
-
-    // Popular dishes
     const popular = MENU_DATA.filter(i => i.popular);
     document.getElementById('popularDishes').innerHTML = popular.map(d => `
       <div class="dish-card">
