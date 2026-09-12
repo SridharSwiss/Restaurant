@@ -1,4 +1,4 @@
-// Elaichi Food Ordering App — WEF Davos 2027 Edition
+// Melody Restaurant — melodyrestaurant.ch · WEF Davos 2027 Edition
 
 const WEF_MODE = true;
 const WEF_YEAR = 2027;
@@ -60,15 +60,16 @@ const CATEGORIES = [
   { id: 'drinks', label: 'Drinks', emoji: '🥤' },
 ];
 
-const DELIVERY_FEE = 0;
-const FREE_DELIVERY_THRESHOLD = 0;
-const MIN_ORDER = 250;
+const DELIVERY_FEE = 0; // Complimentary for WEF delegates
+const FREE_DELIVERY_THRESHOLD = 0; // Always free
+const MIN_ORDER = 250; // WEF minimum order
 
+// Cart operations
 function getCart() {
-  try { return JSON.parse(localStorage.getItem('elaichi_cart') || '[]'); } catch { return []; }
+  try { return JSON.parse(localStorage.getItem('melody_cart') || '[]'); } catch { return []; }
 }
 function saveCart(cart) {
-  localStorage.setItem('elaichi_cart', JSON.stringify(cart));
+  localStorage.setItem('melody_cart', JSON.stringify(cart));
   updateCartBadge();
 }
 function addToCart(itemId, qty = 1) {
@@ -86,7 +87,7 @@ function updateQty(itemId, qty) {
   const item = cart.find(c => c.id === itemId);
   if (item) { if (qty <= 0) return removeFromCart(itemId); item.qty = qty; saveCart(cart); }
 }
-function clearCart() { localStorage.removeItem('elaichi_cart'); updateCartBadge(); }
+function clearCart() { localStorage.removeItem('melody_cart'); updateCartBadge(); }
 function getCartCount() { return getCart().reduce((sum, c) => sum + c.qty, 0); }
 function getCartTotal() {
   return getCart().reduce((sum, c) => {
@@ -94,7 +95,7 @@ function getCartTotal() {
     return sum + (item ? item.price * c.qty : 0);
   }, 0);
 }
-function getDeliveryFee() { return 0; }
+function getDeliveryFee() { return 0; } // Complimentary delivery
 
 function updateCartBadge() {
   const badges = document.querySelectorAll('.cart-badge');
@@ -102,10 +103,10 @@ function updateCartBadge() {
   badges.forEach(b => { b.textContent = count; b.style.display = count > 0 ? 'flex' : 'none'; });
 }
 
-function saveOrder(order) { const orders = getOrders(); orders.unshift(order); localStorage.setItem('elaichi_orders', JSON.stringify(orders)); }
-function getOrders() { try { return JSON.parse(localStorage.getItem('elaichi_orders') || '[]'); } catch { return []; } }
+function saveOrder(order) { const orders = getOrders(); orders.unshift(order); localStorage.setItem('melody_orders', JSON.stringify(orders)); }
+function getOrders() { try { return JSON.parse(localStorage.getItem('melody_orders') || '[]'); } catch { return []; } }
 function getOrder(orderId) { return getOrders().find(o => o.id === orderId); }
-function generateOrderId() { return 'EL' + Date.now().toString(36).toUpperCase(); }
+function generateOrderId() { return 'ML' + Date.now().toString(36).toUpperCase(); }
 
 function showToast(msg, type = 'success') {
   let toast = document.getElementById('toast');
@@ -117,10 +118,15 @@ function showToast(msg, type = 'success') {
 }
 function formatPrice(p) { return 'CHF ' + p.toFixed(2); }
 
+document.addEventListener('DOMContentLoaded', () => { updateCartBadge(); });
+
 function spiceLabel(level) {
   const labels = ['', 'Mild', 'Medium', 'Hot', 'Very Hot'];
   const icons = ['', '🌶️', '🌶️🌶️', '🌶️🌶️🌶️', '🌶️🌶️🌶️🌶️'];
   return level > 0 ? `<span class="spice-badge">${icons[level]} ${labels[level]}</span>` : '';
 }
 
-document.addEventListener('DOMContentLoaded', () => { updateCartBadge(); });
+// Init on every page
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+});
