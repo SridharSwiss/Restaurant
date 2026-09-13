@@ -308,7 +308,7 @@
     function renderItem(d) {
       return `
         <div class="menu-item scroll-reveal" id="item-${d.id}">
-          <div class="menu-item-emoji">${d.emoji}</div>
+          <div class="menu-item-emoji"><img src="${d.img}" alt="${d.name}" loading="lazy" /></div>
           <div class="menu-item-info">
             <div class="menu-item-meta">
               <span class="badge ${d.veg ? 'badge-veg' : 'badge-nonveg'}">${d.veg ? '🟢' : '🔴'}</span>
@@ -339,7 +339,7 @@
               <button onclick="changeQty(${d.id}, 1)">+</button>
             </div>`;
         } else {
-          ctrl.innerHTML = `<button class="btn-add" onclick="handleAdd(${d.id})">&#xFF0B; Add</button>`;
+          ctrl.innerHTML = `<button class="btn-add" onclick="handleAdd(${d.id})">＋ Add</button>`;
         }
       });
       updateFloatingCart();

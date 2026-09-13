@@ -843,6 +843,22 @@ a { color: inherit; text-decoration: none; }
   body { padding-bottom: env(safe-area-inset-bottom); }
 }
 
+/* ── Dish Images ── */
+.menu-item-emoji img,
+.dish-thumb img,
+.hero-dish-emoji img,
+.menu-card-emoji img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+.menu-item-emoji { overflow: hidden; border-radius: var(--r-sm); }
+.dish-thumb { overflow: hidden; }
+.hero-dish-emoji { overflow: hidden; border-radius: var(--r-sm); }
+.menu-card-emoji { overflow: hidden; }
+
 /* ── Scroll Reveal ── */
 .scroll-reveal {
   opacity: 0;
