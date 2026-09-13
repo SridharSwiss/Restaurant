@@ -4,130 +4,266 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Melody × WEF Davos 2027 — Exclusive Indian Dining for Forum Delegates</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
+    /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #1A1A1A 0%, #2D1A00 60%, #1A1A1A 100%);
-      color: white;
-      min-height: 88vh;
+      min-height: calc(100vh - var(--nav-h));
       display: flex;
       align-items: center;
-      overflow: hidden;
+      padding-top: var(--nav-h);
       position: relative;
+      overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(232,168,56,0.15) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-content {
+    .hero-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 24px;
+      padding: 64px 24px 80px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      grid-template-columns: 1fr 420px;
+      gap: 72px;
       align-items: center;
       width: 100%;
-    }
-    @media (max-width: 768px) {
-      .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      .hero-visual { order: -1; }
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(232,168,56,0.15);
-      border: 1px solid rgba(232,168,56,0.3);
-      color: var(--saffron-light);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      background: var(--glass-2);
+      border: 1px solid var(--bdr-gold);
+      color: var(--gold-lt);
+      padding: 7px 16px;
+      border-radius: var(--r-full);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 50%, var(--ember) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+      margin-bottom: 36px;
+      max-width: 460px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-divider {
+      height: 1px;
+      background: var(--bdr);
+      margin-bottom: 36px;
+    }
+    .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+    .hero-stat strong {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      color: var(--gold-lt);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat span { font-size: 0.76rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.07em; }
+
+    /* Hero visual — stacked glass cards */
+    .hero-visual { display: flex; flex-direction: column; gap: 12px; }
+    .hero-dish {
+      background: var(--glass-1);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color var(--t), background var(--t), transform var(--t), box-shadow var(--t);
+    }
+    .hero-dish:hover {
+      border-color: var(--bdr-gold);
+      background: var(--glass-2);
+      transform: translateX(6px);
+      box-shadow: var(--glow);
+    }
+    .hero-dish-emoji {
+      font-size: 2.4rem;
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(232,168,56,0.10), rgba(7,7,14,0));
+      border-radius: var(--r-sm);
+      flex-shrink: 0;
+    }
+    .hero-dish-info { flex: 1; min-width: 0; }
+    .hero-dish-info h4 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 2px; font-family: var(--font-body); }
+    .hero-dish-info p { font-size: 0.76rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0; }
+    .hero-dish-price {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gold-lt);
+      flex-shrink: 0;
+    }
+
+    /* ── Feature cards ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--glass-1);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+    }
+    .feature-card:hover {
+      border-color: var(--bdr-gold);
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(232,168,56,0.15), rgba(212,82,28,0.08));
+      border: 1px solid var(--bdr-gold);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
       margin-bottom: 20px;
     }
-    .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 20px; color: white; }
-    .hero h1 span { color: var(--saffron); }
-    .hero p { font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.7); margin-bottom: 32px; max-width: 460px; }
-    @media (max-width: 768px) { .hero p { margin: 0 auto 32px; } }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    @media (max-width: 768px) { .hero-actions { justify-content: center; } }
-    .hero-stats { display: flex; gap: 32px; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
-    @media (max-width: 768px) { .hero-stats { justify-content: center; } }
-    .hero-stat strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--saffron); }
-    .hero-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
-    .hero-visual { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 16px; }
-    .hero-dish { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 20px; backdrop-filter: blur(10px); transition: transform 0.3s ease, background 0.3s ease; cursor: pointer; }
-    .hero-dish:hover { background: rgba(232,168,56,0.1); transform: translateY(-4px); }
-    .hero-dish:first-child { grid-column: 1 / -1; }
-    .hero-dish-emoji { font-size: 2.5rem; margin-bottom: 8px; }
-    .hero-dish h4 { font-size: 0.95rem; color: white; margin-bottom: 4px; }
-    .hero-dish p { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin: 0; }
-    .hero-dish .price { color: var(--saffron); font-weight: 700; font-family: var(--font-mono); font-size: 0.9rem; }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } }
-    .feature-card { background: var(--white); border-radius: var(--radius-md); padding: 32px; box-shadow: var(--shadow-sm); border: 1px solid var(--mist); transition: box-shadow var(--transition), transform var(--transition); }
-    .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
-    .feature-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--saffron-light), var(--saffron)); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
-    .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-    .feature-card p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.6; }
-    .dishes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    .dish-card { background: var(--white); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--mist); transition: box-shadow var(--transition), transform var(--transition); display: flex; flex-direction: column; }
-    .dish-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
-    .dish-thumb { background: linear-gradient(135deg, var(--cream-dark), var(--mist)); height: 160px; display: flex; align-items: center; justify-content: center; font-size: 5rem; position: relative; }
-    .dish-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-    .dish-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-    .dish-card-body h3 { font-size: 1.05rem; margin-bottom: 6px; }
-    .dish-card-body p { color: var(--ink-soft); font-size: 0.85rem; line-height: 1.5; margin-bottom: 16px; flex: 1; }
-    .dish-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
-    .dish-price { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--saffron-dark); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
-    .testimonial { background: var(--white); border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid var(--mist); }
-    .testimonial-stars { color: var(--saffron); font-size: 1rem; margin-bottom: 12px; }
-    .testimonial p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron-light), var(--saffron)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.9rem; }
-    .testimonial-author strong { display: block; font-size: 0.9rem; }
-    .testimonial-author span { font-size: 0.8rem; color: var(--ink-soft); }
-    .cta-banner { background: linear-gradient(135deg, var(--saffron-dark), var(--saffron)); border-radius: var(--radius-lg); padding: 64px 48px; text-align: center; color: white; }
-    .cta-banner h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 12px; }
-    .cta-banner p { font-size: 1.05rem; margin-bottom: 32px; opacity: 0.9; }
-    .cta-banner .btn { background: white; color: var(--saffron-dark); }
-    .cta-banner .btn:hover { background: var(--cream); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    .hide-xs { }
-    @media (max-width: 640px) {
-      .hide-xs { display: none; }
-      .hero-content { padding: 48px 16px 40px; gap: 32px; }
-      .hero-eyebrow { font-size: 0.72rem; }
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 0.95rem; }
-      .hero-actions { gap: 8px; }
-      .hero-actions .btn { flex: 1; text-align: center; justify-content: center; }
-      .hero-stats { gap: 16px; flex-wrap: wrap; padding-top: 24px; margin-top: 24px; }
-      .hero-stat strong { font-size: 1.2rem; }
-      .hero-visual { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .hero-visual .hero-dish:first-child { grid-column: 1 / -1; }
-      .hero-dish { padding: 14px; }
-      .hero-dish-emoji { font-size: 1.8rem; }
-      .features-grid { grid-template-columns: 1fr; gap: 16px; }
-      .feature-card { padding: 20px; }
-      .dishes-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .cta-banner { padding: 40px 20px; border-radius: var(--radius-md); }
-      .cta-banner h2 { font-size: 1.5rem; }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
     }
-    @media (max-width: 380px) {
-      .hero-visual { grid-template-columns: 1fr; }
-      .hero-visual .hero-dish:first-child { grid-column: 1; }
+    .feature-card p { font-size: 0.88rem; line-height: 1.65; }
+
+    /* ── Dish cards ── */
+    .dishes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+    .dish-card {
+      background: var(--glass-1);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+    }
+    .dish-card:hover { border-color: var(--bdr-gold); transform: translateY(-4px); box-shadow: var(--glow); }
+    .dish-thumb {
+      height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem;
+      background: linear-gradient(160deg, rgba(232,168,56,0.06), rgba(7,7,14,0));
+      border-bottom: 1px solid var(--bdr);
+    }
+    .dish-card-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .dish-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .dish-card-body h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); font-family: var(--font-display); }
+    .dish-card-body > p { font-size: 0.82rem; line-height: 1.55; flex: 1; }
+    .dish-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+    .dish-price { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--gold-lt); }
+
+    /* ── Testimonials ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testimonial {
+      background: var(--glass-1);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      transition: border-color var(--t);
+    }
+    .testimonial:hover { border-color: var(--bdr-gold); }
+    .testimonial-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .testimonial > p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      font-style: italic;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--ember));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      color: #07070E;
+      font-size: 0.88rem;
+      flex-shrink: 0;
+    }
+    .testimonial-author strong { display: block; font-size: 0.88rem; color: var(--text); }
+    .testimonial-author span { font-size: 0.76rem; color: var(--text-dim); }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: var(--glass-1);
+      border: 1px solid var(--bdr-gold);
+      border-radius: var(--r-xl);
+      padding: 72px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(232,168,56,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .cta-banner h2 em {
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(135deg, var(--gold), var(--ember));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cta-banner p { font-size: 1rem; margin-bottom: 36px; max-width: 480px; margin-inline: auto; margin-bottom: 36px; }
+
+    /* ── Dark section tint ── */
+    .section-tint { background: var(--glass-0); border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { flex-direction: row; flex-wrap: wrap; }
+      .hero-dish { flex: 1 1 240px; }
+      .features-grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+    @media (max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-inner { padding: 40px 16px 56px; }
+      .hero h1 { font-size: 2.6rem; }
+      .hero-stats { gap: 20px; }
+      .hero-actions .btn { flex: 1; text-align: center; }
+      .dishes-grid { grid-template-columns: 1fr; }
+      .cta-banner { padding: 44px 20px; border-radius: var(--r-lg); }
+      .cta-banner h2 { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -146,7 +282,7 @@
       <div style="display:flex;align-items:center;gap:8px;">
         <a href="cart.html" class="cart-btn">
           <span>🛒</span>
-          <span class="hide-xs">Cart</span>
+          <span>Cart</span>
           <span class="cart-badge">0</span>
         </a>
         <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -157,72 +293,160 @@
   </nav>
   <div class="mobile-menu" id="mobileMenu" onclick="closeMenu(event)">
     <div class="mobile-menu-panel">
-      <a href="index.html" class="active">🏠 Home</a>
+      <a href="index.html">🏠 Home</a>
       <a href="menu.html">🍛 Menu</a>
       <a href="tracking.html">📍 Track Order</a>
       <a href="cart.html" class="menu-cart-btn">🛒 View Cart</a>
     </div>
   </div>
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-eyebrow">🏔️ WEF Davos 2027 · Jan 19–23 · Exclusive Delegates Only</div>
-        <h1>Melody × <span>WEF Davos</span> 2027</h1>
-        <p>India's finest flavours, curated exclusively for World Economic Forum delegates. Premium biryanis, signature curries and artisan breads — delivered complimentary to your door in Davos.</p>
+    <div class="hero-inner">
+      <div class="anim-up">
+        <div class="hero-eyebrow">🏔️ WEF Davos 2027 · Jan 19–23 · Delegates Only</div>
+        <h1>Where India<br>meets <em>the Alps.</em></h1>
+        <p class="hero-sub">Premium Indian cuisine curated exclusively for World Economic Forum delegates — delivered complimentary to your Davos door.</p>
         <div class="hero-actions">
-          <a href="menu.html" class="btn btn-primary btn-lg">Explore Exclusive Menu</a>
-          <a href="tracking.html" class="btn btn-lg" style="background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);">Track My Order</a>
+          <a href="menu.html" class="btn btn-primary btn-lg">Explore the Menu</a>
+          <a href="tracking.html" class="btn btn-secondary btn-lg">Track My Order</a>
         </div>
+        <div class="hero-divider"></div>
         <div class="hero-stats">
           <div class="hero-stat"><strong>32+</strong><span>Dishes</span></div>
           <div class="hero-stat"><strong>4.9★</strong><span>Rating</span></div>
-          <div class="hero-stat"><strong>CHF 0</strong><span>Delivery Fee</span></div>
-          <div class="hero-stat"><strong>CHF 250</strong><span>Min Order</span></div>
+          <div class="hero-stat"><strong>CHF 0</strong><span>Delivery</span></div>
+          <div class="hero-stat"><strong>250</strong><span>Min (CHF)</span></div>
         </div>
       </div>
-      <div class="hero-visual" id="heroVisual"></div>
+      <div class="hero-visual anim-up delay-2" id="heroVisual"></div>
     </div>
   </section>
-  <section class="section" style="background:var(--white);">
+
+  <!-- Features -->
+  <section class="section section-tint">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header anim-up">
         <h2>The WEF Delegate Experience</h2>
-        <p>Curated exclusively for World Economic Forum 2027 — premium Indian cuisine worthy of the world's most influential gathering.</p>
+        <p>Premium Indian dining, worthy of the world's most influential gathering.</p>
       </div>
       <div class="features-grid">
-        <div class="feature-card"><div class="feature-icon">👑</div><h3>Premium WEF Edition</h3><p>Every dish is crafted with the finest ingredients, plated to luxury standards. The ultimate Indian dining experience in the Alps.</p></div>
-        <div class="feature-card"><div class="feature-icon">🚁</div><h3>Complimentary Delivery</h3><p>White-glove delivery to your Davos hotel or chalet, complimentary on all orders. Hot, punctual, impeccable every time.</p></div>
-        <div class="feature-card"><div class="feature-icon">🌶️</div><h3>Bespoke &amp; Customisable</h3><p>Adjust spice levels, choose proteins or request allergen-free preparations. Every dish tailored to your exact preference.</p></div>
+        <div class="feature-card anim-up delay-1">
+          <div class="feature-icon">👑</div>
+          <h3>Premium WEF Edition</h3>
+          <p>Every dish crafted with the finest ingredients, plated to luxury standards. The ultimate Indian dining experience in the Alps.</p>
+        </div>
+        <div class="feature-card anim-up delay-2">
+          <div class="feature-icon">🚁</div>
+          <h3>Complimentary Delivery</h3>
+          <p>White-glove delivery to your Davos hotel or chalet, complimentary on all orders. Hot, punctual, impeccable.</p>
+        </div>
+        <div class="feature-card anim-up delay-3">
+          <div class="feature-icon">🌶️</div>
+          <h3>Bespoke &amp; Customisable</h3>
+          <p>Adjust spice, choose proteins, request allergen-free preparations. Every dish tailored to your exact preference.</p>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Popular Dishes -->
   <section class="section">
     <div class="container">
-      <div class="section-header"><h2>WEF Signature Selection</h2><p>Our most celebrated dishes, elevated with premium ingredients for the Forum 2027 edition.</p></div>
+      <div class="section-header anim-up">
+        <h2>WEF Signature Selection</h2>
+        <p>Our most celebrated dishes, elevated with premium ingredients for Forum 2027.</p>
+      </div>
       <div class="dishes-grid" id="popularDishes"></div>
-      <div style="text-align:center; margin-top:40px;"><a href="menu.html" class="btn btn-outline btn-lg">View Full Menu →</a></div>
-    </div>
-  </section>
-  <section class="section" style="background:var(--white);">
-    <div class="container">
-      <div class="section-header"><h2>Trusted by Forum Delegates</h2><p>Melody Restaurant has served guests at the world's most exclusive gatherings — including past WEF Davos editions.</p></div>
-      <div class="testimonials-grid">
-        <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p>"The Butter Chicken is the best I've had outside of India. Rich, velvety sauce — absolutely perfect. Delivery was on time and still piping hot."</p><div class="testimonial-author"><div class="testimonial-avatar">P</div><div><strong>Priya M.</strong><span>Regular customer</span></div></div></div>
-        <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p>"Living in Switzerland and finding a place that makes Biryani this authentic is incredible. The aroma alone is worth it. Ordering every week now!"</p><div class="testimonial-author"><div class="testimonial-avatar">R</div><div><strong>Rahul S.</strong><span>Zürich</span></div></div></div>
-        <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p>"Amazing food and super easy to order online. The vegetarian options are wonderful — Palak Paneer and Dal Makhani together is a dream combo!"</p><div class="testimonial-author"><div class="testimonial-avatar">A</div><div><strong>Anita K.</strong><span>Oberglatt</span></div></div></div>
+      <div style="text-align:center; margin-top:44px;">
+        <a href="menu.html" class="btn btn-outline btn-lg">View Full Menu →</a>
       </div>
     </div>
   </section>
-  <section class="section"><div class="container"><div class="cta-banner"><h2>Reserve Your WEF Dining Experience</h2><p>Exclusive to January 19–23, 2027. Minimum order CHF 250 with complimentary Davos delivery.</p><a href="menu.html" class="btn btn-lg">Order Now — WEF Exclusive Menu</a></div></div></section>
+
+  <!-- Testimonials -->
+  <section class="section section-tint">
+    <div class="container">
+      <div class="section-header anim-up">
+        <h2>Trusted by Forum Delegates</h2>
+        <p>Melody has served guests at the world's most exclusive gatherings — including past WEF Davos editions.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial anim-up delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The Butter Chicken is the best I've had outside of India. Rich, velvety sauce — absolutely perfect. Delivery was on time and still piping hot."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">P</div>
+            <div><strong>Priya M.</strong><span>Regular customer</span></div>
+          </div>
+        </div>
+        <div class="testimonial anim-up delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Living in Switzerland and finding a place that makes Biryani this authentic is incredible. The aroma alone is worth it. Ordering every week now!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div><strong>Rahul S.</strong><span>Zürich</span></div>
+          </div>
+        </div>
+        <div class="testimonial anim-up delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Amazing food and super easy to order online. The vegetarian options are wonderful — Palak Paneer and Dal Makhani together is a dream combo!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div><strong>Anita K.</strong><span>Oberglatt</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner anim-up">
+        <h2>Reserve Your <em>WEF Dining Experience</em></h2>
+        <p>Exclusive to January 19–23, 2027. Min. order CHF 250 with complimentary Davos delivery.</p>
+        <a href="menu.html" class="btn btn-primary btn-lg">Order Now — WEF Exclusive</a>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo-text">Melody<span>.</span></div><p>Premium Indian cuisine for WEF Davos 2027 delegates. melodyrestaurant.ch · January 19–23, 2027 · Complimentary delivery · Min. order CHF 250.</p></div>
-      <div><h4>Order</h4><ul><li><a href="menu.html">Full Menu</a></li><li><a href="cart.html">My Cart</a></li><li><a href="tracking.html">Track Order</a></li></ul></div>
-      <div><h4>Info</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Events</a></li><li><a href="#">Contact</a></li></ul></div>
-      <div><h4>Hours</h4><ul><li>Mon–Fri: 11:30–14:30</li><li>Mon–Fri: 17:30–22:00</li><li>Sat–Sun: 12:00–22:30</li></ul></div>
+      <div class="footer-brand">
+        <div class="logo-text">Melody<span>.</span></div>
+        <p>Premium Indian cuisine for WEF Davos 2027 delegates. melodyrestaurant.ch · January 19–23, 2027 · Complimentary delivery · Min. order CHF 250.</p>
+      </div>
+      <div>
+        <h4>Order</h4>
+        <ul>
+          <li><a href="menu.html">Full Menu</a></li>
+          <li><a href="cart.html">My Cart</a></li>
+          <li><a href="tracking.html">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li>Mon–Fri: 11:30–14:30</li>
+          <li>Mon–Fri: 17:30–22:00</li>
+          <li>Sat–Sun: 12:00–22:30</li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Melodyrestaurant.ch — All rights reserved. Made with 🌶️ and love.</p></div>
+    <div class="footer-bottom">
+      <p>© 2026 Melodyrestaurant.ch — All rights reserved.</p>
+    </div>
   </footer>
+
   <script src="app.js"></script>
   <script>
     function toggleMenu() {
@@ -237,17 +461,22 @@
         document.body.style.overflow = '';
       }
     }
+
+    // Hero visual
     const heroItems = MENU_DATA.filter(i => i.popular).slice(0, 4);
-    document.getElementById('heroVisual').innerHTML = heroItems.map((d, i) => `
-      <div class="hero-dish" style="${i === 0 ? 'grid-column: 1 / -1;' : ''}" onclick="location.href='menu.html'">
+    document.getElementById('heroVisual').innerHTML = heroItems.map(d => `
+      <div class="hero-dish" onclick="location.href='menu.html'">
         <div class="hero-dish-emoji">${d.emoji}</div>
-        <h4>${d.name}</h4>
-        <p>${d.desc.substring(0, 60)}…</p>
-        <div class="price">${formatPrice(d.price)}</div>
+        <div class="hero-dish-info">
+          <h4>${d.name}</h4>
+          <p>${d.desc.substring(0, 55)}…</p>
+        </div>
+        <div class="hero-dish-price">${formatPrice(d.price)}</div>
       </div>
     `).join('');
-    const popular = MENU_DATA.filter(i => i.popular);
-    document.getElementById('popularDishes').innerHTML = popular.map(d => `
+
+    // Popular dishes
+    document.getElementById('popularDishes').innerHTML = MENU_DATA.filter(i => i.popular).map(d => `
       <div class="dish-card">
         <div class="dish-thumb">${d.emoji}</div>
         <div class="dish-card-body">
