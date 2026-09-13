@@ -8,7 +8,7 @@ const MENU_DATA = [
   // Starters
   { id: 1, category: 'starters', name: 'Paneer Tikka', price: 21.75, desc: 'Marinated cottage cheese grilled in tandoor with peppers & onions', veg: true, spice: 2, popular: true, emoji: '🧀' },
   { id: 2, category: 'starters', name: 'Chicken Tikka', price: 23.85, desc: 'Tender chicken marinated in yoghurt & spices, char-grilled to perfection', veg: false, spice: 2, popular: true, emoji: '🍗' },
-  { id: 3, category: 'starters', name: 'Samosa (2 pcs)', price: 12.75, desc: 'Crispy pastry filled with spiced potatoes & peas, served with chutneys', veg: true, spice: 1, popular: true, emoji: '🥟' },
+  { id: 3, category: 'starters', name: 'Samosa (2 pcs)', price: 12.75, desc: 'Crispy pastry filled with spiced potatoes & peas, served with chutneys', veg: true, spice: 1, popular: true, emoji: '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,4 60,56 4,56" fill="#E8A838" opacity="0.9"/><polygon points="32,14 52,52 12,52" fill="#D4521C" opacity="0.85"/><polygon points="32,22 44,48 20,48" fill="#B07010" opacity="0.7"/><circle cx="32" cy="38" r="3" fill="#F5D88E" opacity="0.9"/></svg>' },
   { id: 4, category: 'starters', name: 'Seekh Kebab', price: 24.75, desc: 'Minced lamb with herbs & spices, skewered and grilled over charcoal', veg: false, spice: 2, popular: false, emoji: '🍢' },
   { id: 5, category: 'starters', name: 'Aloo Tikki', price: 14.25, desc: 'Crispy potato patties with chaat masala, tamarind & mint chutney', veg: true, spice: 1, popular: false, emoji: '🥔' },
   { id: 6, category: 'starters', name: 'Prawn Koliwada', price: 28.35, desc: 'Coastal-style crispy prawns tossed with kokum & coastal spices', veg: false, spice: 3, popular: false, emoji: '🦐' },
@@ -60,11 +60,10 @@ const CATEGORIES = [
   { id: 'drinks', label: 'Drinks', emoji: '🥤' },
 ];
 
-const DELIVERY_FEE = 0; // Complimentary for WEF delegates
-const FREE_DELIVERY_THRESHOLD = 0; // Always free
-const MIN_ORDER = 250; // WEF minimum order
+const DELIVERY_FEE = 0;
+const FREE_DELIVERY_THRESHOLD = 0;
+const MIN_ORDER = 250;
 
-// Cart operations
 function getCart() {
   try { return JSON.parse(localStorage.getItem('melody_cart') || '[]'); } catch { return []; }
 }
@@ -95,7 +94,7 @@ function getCartTotal() {
     return sum + (item ? item.price * c.qty : 0);
   }, 0);
 }
-function getDeliveryFee() { return 0; } // Complimentary delivery
+function getDeliveryFee() { return 0; }
 
 function updateCartBadge() {
   const badges = document.querySelectorAll('.cart-badge');
@@ -118,15 +117,22 @@ function showToast(msg, type = 'success') {
 }
 function formatPrice(p) { return 'CHF ' + p.toFixed(2); }
 
-document.addEventListener('DOMContentLoaded', () => { updateCartBadge(); });
-
 function spiceLabel(level) {
   const labels = ['', 'Mild', 'Medium', 'Hot', 'Very Hot'];
   const icons = ['', '🌶️', '🌶️🌶️', '🌶️🌶️🌶️', '🌶️🌶️🌶️🌶️'];
   return level > 0 ? `<span class="spice-badge">${icons[level]} ${labels[level]}</span>` : '';
 }
 
-// Init on every page
+function initScrollReveal() {
+  const els = document.querySelectorAll('.scroll-reveal:not(.visible)');
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  els.forEach(el => io.observe(el));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
+  initScrollReveal();
 });
