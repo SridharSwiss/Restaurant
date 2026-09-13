@@ -326,22 +326,22 @@
   <!-- Features -->
   <section class="section section-tint">
     <div class="container">
-      <div class="section-header anim-up">
+      <div class="section-header scroll-reveal">
         <h2>The WEF Delegate Experience</h2>
-        <p>Premium Indian dining, worthy of the world's most influential gathering.</p>
+        <p>Premium Indian dining, worthy of the world’s most influential gathering.</p>
       </div>
       <div class="features-grid">
-        <div class="feature-card anim-up delay-1">
+        <div class="feature-card scroll-reveal">
           <div class="feature-icon">👑</div>
           <h3>Premium WEF Edition</h3>
           <p>Every dish crafted with the finest ingredients, plated to luxury standards. The ultimate Indian dining experience in the Alps.</p>
         </div>
-        <div class="feature-card anim-up delay-2">
+        <div class="feature-card scroll-reveal">
           <div class="feature-icon">🚁</div>
           <h3>Complimentary Delivery</h3>
           <p>White-glove delivery to your Davos hotel or chalet, complimentary on all orders. Hot, punctual, impeccable.</p>
         </div>
-        <div class="feature-card anim-up delay-3">
+        <div class="feature-card scroll-reveal">
           <div class="feature-icon">🌶️</div>
           <h3>Bespoke &amp; Customisable</h3>
           <p>Adjust spice, choose proteins, request allergen-free preparations. Every dish tailored to your exact preference.</p>
@@ -353,7 +353,7 @@
   <!-- Popular Dishes -->
   <section class="section">
     <div class="container">
-      <div class="section-header anim-up">
+      <div class="section-header scroll-reveal">
         <h2>WEF Signature Selection</h2>
         <p>Our most celebrated dishes, elevated with premium ingredients for Forum 2027.</p>
       </div>
@@ -367,30 +367,30 @@
   <!-- Testimonials -->
   <section class="section section-tint">
     <div class="container">
-      <div class="section-header anim-up">
+      <div class="section-header scroll-reveal">
         <h2>Trusted by Forum Delegates</h2>
-        <p>Melody has served guests at the world's most exclusive gatherings — including past WEF Davos editions.</p>
+        <p>Melody has served guests at the world’s most exclusive gatherings — including past WEF Davos editions.</p>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial anim-up delay-1">
+        <div class="testimonial scroll-reveal">
           <div class="testimonial-stars">★★★★★</div>
-          <p>"The Butter Chicken is the best I've had outside of India. Rich, velvety sauce — absolutely perfect. Delivery was on time and still piping hot."</p>
+          <p>“The Butter Chicken is the best I’ve had outside of India. Rich, velvety sauce — absolutely perfect. Delivery was on time and still piping hot.”</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">P</div>
             <div><strong>Priya M.</strong><span>Regular customer</span></div>
           </div>
         </div>
-        <div class="testimonial anim-up delay-2">
+        <div class="testimonial scroll-reveal">
           <div class="testimonial-stars">★★★★★</div>
-          <p>"Living in Switzerland and finding a place that makes Biryani this authentic is incredible. The aroma alone is worth it. Ordering every week now!"</p>
+          <p>“Living in Switzerland and finding a place that makes Biryani this authentic is incredible. The aroma alone is worth it. Ordering every week now!”</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">R</div>
             <div><strong>Rahul S.</strong><span>Zürich</span></div>
           </div>
         </div>
-        <div class="testimonial anim-up delay-3">
+        <div class="testimonial scroll-reveal">
           <div class="testimonial-stars">★★★★★</div>
-          <p>"Amazing food and super easy to order online. The vegetarian options are wonderful — Palak Paneer and Dal Makhani together is a dream combo!"</p>
+          <p>“Amazing food and super easy to order online. The vegetarian options are wonderful — Palak Paneer and Dal Makhani together is a dream combo!”</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">A</div>
             <div><strong>Anita K.</strong><span>Oberglatt</span></div>
@@ -403,7 +403,7 @@
   <!-- CTA -->
   <section class="section">
     <div class="container">
-      <div class="cta-banner anim-up">
+      <div class="cta-banner scroll-reveal">
         <h2>Reserve Your <em>WEF Dining Experience</em></h2>
         <p>Exclusive to January 19–23, 2027. Min. order CHF 250 with complimentary Davos delivery.</p>
         <a href="menu.html" class="btn btn-primary btn-lg">Order Now — WEF Exclusive</a>
@@ -477,7 +477,7 @@
 
     // Popular dishes
     document.getElementById('popularDishes').innerHTML = MENU_DATA.filter(i => i.popular).map(d => `
-      <div class="dish-card">
+      <div class="dish-card scroll-reveal">
         <div class="dish-thumb">${d.emoji}</div>
         <div class="dish-card-body">
           <div class="dish-meta">
@@ -493,6 +493,7 @@
         </div>
       </div>
     `).join('');
+    setTimeout(initScrollReveal, 100);
   </script>
 </body>
 </html>
